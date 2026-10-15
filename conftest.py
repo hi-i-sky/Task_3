@@ -1,10 +1,14 @@
 import pytest
+import requests
 from driver_factory import WebdriverFactory
 from faker import Faker
 from pages.main_page import MainPage
 from pages.login_page import LoginPage
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.reset_password_page import ResetPasswordPage
+from pages.account_page import AccountPage
+from constants.urls import CREATE_USER_URL
+from helpers import delete_user_by_token
 
 
 def pytest_addoption(parser):
@@ -40,7 +44,7 @@ def driver(request):
 
 
 @pytest.fixture
-def random_user():
+def random_user_payload():
 
     fake = Faker()
     return {
@@ -48,6 +52,29 @@ def random_user():
         'password': fake.password(),
         'name': fake.first_name()
     } 
+
+
+@pytest.fixture
+def created_user(random_user_payload):
+
+    r = requests.post(CREATE_USER_URL, json=random_user_payload)
+    r.raise_for_status()
+
+    data = r.json()
+
+    user_access_token = data['accessToken']
+    user_email = data['user']['email']
+    user_name = data['user']['name']
+    user_password = random_user_payload['password']
+
+    yield {
+        'token': user_access_token, 
+        'email': user_email, 
+        'name': user_name,
+        'password': user_password
+    }
+
+    delete_user_by_token(user_access_token)
 
 
 @pytest.fixture
@@ -68,3 +95,8 @@ def forgot_password_page(driver):
 @pytest.fixture
 def reset_password_page(driver):
     return ResetPasswordPage(driver)
+
+
+@pytest.fixture
+def account_page(driver):
+    return AccountPage(driver)
