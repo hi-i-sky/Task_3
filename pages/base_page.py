@@ -1,5 +1,6 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class BasePage:
@@ -47,3 +48,16 @@ class BasePage:
         self.wait.until(
             lambda d: d.find_element(*locator).value_of_css_property("border-color") == expected_color
         )
+
+    def drag_and_drop(self, start_locator: tuple, finish_locator: tuple):
+        start_point = self.wait.until(EC.element_to_be_clickable(start_locator))
+        finish_point = self.wait.until(EC.element_to_be_clickable(finish_locator))
+        
+        actions = ActionChains(self.driver)
+        actions.click_and_hold(start_point).move_to_element(finish_point).release().perform()
+
+    def wait_for_element_invisible(self, locator):
+        return self.wait.until(EC.invisibility_of_element_located(locator))
+
+    def get_locators_text(self, locator):
+        return self.driver.find_element(*locator).text

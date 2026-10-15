@@ -1,0 +1,13 @@
+from selenium.webdriver.common.by import By
+
+ORDERS_FEED_BUTTON = [By.XPATH, ".//p[text()='Лента Заказов']"]
+ORDERS_FEED_HEADER = [By.XPATH, ".//h1[text()='Лента заказов']"]
+CONSTRUCTOR_BUTTON = [By.XPATH, ".//p[text()='Конструктор']"]
+CONSTRUCTOR_HEADER = [By.CSS_SELECTOR, "h1.text_type_main-large"]
+INGREDIENT_BUTTON = [By.XPATH, ".//img[@alt='Краторная булка N-200i']"]
+INGREDIENTS_DETAILS = [By.XPATH, ".//h2[text()='Детали ингредиента']"]
+INGREDIENTS_DETAILS_NAME = [By.XPATH, ".//div[@class='Modal_modal__contentBox__sCy8X pt-10 pb-15']//p[text()='Краторная булка N-200i']"]
+CLOSE_INGREDIENTS_DETAILS_BUTTON = [By.XPATH, ".//div[contains(@class, 'Modal_modal__container__Wo2l_')]//button"]
+MAKE_ORDER_BUTTON = [By.CSS_SELECTOR, "button.button_button_type_primary__1O7Bx"]
+ORDER_AREA = [By.CSS_SELECTOR, "div.constructor-element_pos_top"]
+INGREDIENTS_COUNTER = [By.XPATH, ".//a[contains(@href, '6acef97852135b001b21a32b')]//p[@class='counter_counter__num__3nue1']"]
