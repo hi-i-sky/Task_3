@@ -61,3 +61,30 @@ class BasePage:
 
     def get_locators_text(self, locator):
         return self.driver.find_element(*locator).text
+
+    def drag_and_drop_js(self, start_locator, finish_locator):
+        source = self.wait.until(EC.visibility_of_element_located(start_locator))
+        target = self.wait.until(EC.visibility_of_element_located(finish_locator))
+
+        script = """
+        const source = arguments[0];
+        const target = arguments[1];
+
+        const dataTransfer = new DataTransfer();
+
+        function fire(element, type) {
+            const event = new DragEvent(type, {
+                bubbles: true,
+                cancelable: true,
+                dataTransfer: dataTransfer
+            });
+            element.dispatchEvent(event);
+        }
+
+        fire(source, 'dragstart');
+        fire(target, 'dragenter');
+        fire(target, 'dragover');
+        fire(target, 'drop');
+        fire(source, 'dragend');
+        """
+        self.driver.execute_script(script, source, target)

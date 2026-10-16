@@ -2,7 +2,7 @@ from pages.base_page import BasePage
 
 from constants.urls import BASE_URL, ORDERS_FEED_URL
 from locators.base_page_locators import PERSONAL_ACCOUNT_BUTTON
-from locators.main_page_locators import ORDERS_FEED_BUTTON, CONSTRUCTOR_BUTTON, INGREDIENT_BUTTON, INGREDIENTS_DETAILS, CLOSE_INGREDIENTS_DETAILS_BUTTON, MAKE_ORDER_BUTTON, ORDER_AREA, ORDERS_FEED_HEADER, INGREDIENTS_COUNTER
+from locators.main_page_locators import ORDERS_FEED_BUTTON, CONSTRUCTOR_BUTTON, INGREDIENT_BUTTON, INGREDIENTS_DETAILS, CLOSE_INGREDIENTS_DETAILS_BUTTON, MAKE_ORDER_BUTTON, ORDER_AREA, ORDERS_FEED_HEADER, INGREDIENTS_COUNTER, ORDER_ID
 
 
 class MainPage(BasePage):
@@ -38,7 +38,7 @@ class MainPage(BasePage):
         self.find_element(MAKE_ORDER_BUTTON).click()
 
     def drag_and_drop_ingredient(self):
-        self.drag_and_drop(INGREDIENT_BUTTON, ORDER_AREA)
+        self.drag_and_drop_js(INGREDIENT_BUTTON, ORDER_AREA)
 
     def click_on_ingredient(self):
         self.find_element(INGREDIENT_BUTTON).click()
@@ -51,3 +51,6 @@ class MainPage(BasePage):
 
     def get_ingredients_count(self):
         return self.get_locators_text(INGREDIENTS_COUNTER)
+
+    def wait_for_load_order_id(self):
+        self.wait_for_element_visible(ORDER_ID)

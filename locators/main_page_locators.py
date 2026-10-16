@@ -11,3 +11,5 @@ CLOSE_INGREDIENTS_DETAILS_BUTTON = [By.XPATH, ".//div[contains(@class, 'Modal_mo
 MAKE_ORDER_BUTTON = [By.CSS_SELECTOR, "button.button_button_type_primary__1O7Bx"]
 ORDER_AREA = [By.CSS_SELECTOR, "div.constructor-element_pos_top"]
 INGREDIENTS_COUNTER = [By.XPATH, ".//a[contains(@href, '6acef97852135b001b21a32b')]//p[@class='counter_counter__num__3nue1']"]
+ORDER_ID = [By.CSS_SELECTOR, "h2.Modal_modal__title_shadow__3ikwq"]
+ORDER_IN_PROCESS_HEADER = [By.CSS_SELECTOR, "p.text_type_main-small"]

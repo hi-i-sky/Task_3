@@ -1,6 +1,6 @@
 import allure
 from constants.urls import ACCOUNT_URL, LOGIN_URL, ORDERS_HISTORY_IN_ACCOUNT_URL
-from locators.main_page_locators import ORDERS_FEED_HEADER, CONSTRUCTOR_HEADER, INGREDIENTS_DETAILS, INGREDIENTS_DETAILS_NAME
+from locators.main_page_locators import ORDERS_FEED_HEADER, CONSTRUCTOR_HEADER, INGREDIENTS_DETAILS, INGREDIENTS_DETAILS_NAME, ORDER_ID, ORDER_IN_PROCESS_HEADER
 
 
 class TestMainPage():
@@ -65,3 +65,24 @@ class TestMainPage():
 
         main_page.drag_and_drop_ingredient()
         assert main_page.get_ingredients_count() == '2'
+
+
+    def test_user_make_order(self, main_page, login_page, created_user):
+
+        main_page.get_base_page()
+        main_page.click_personal_account_button()
+        
+        login_page.wait_for_load_login_page()
+        login_page.set_email(created_user['email'])
+        login_page.set_password(created_user['password'])
+        login_page.click_login_button()
+        
+        main_page.wait_for_load_main_page()
+        main_page.click_make_order_button()
+        main_page.wait_for_load_order_id()
+
+        order_id = main_page.find_element(ORDER_ID)
+        order_in_process_header = main_page.find_element(ORDER_IN_PROCESS_HEADER)
+
+        assert order_id.is_displayed()
+        assert order_in_process_header.text == 'Ваш заказ начали готовить'
