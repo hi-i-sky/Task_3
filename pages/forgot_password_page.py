@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from locators.base_page_locators import RESET_PASSWORD_CONFIRM_BUTTON, RESET_PASSWORD_EMAIL_FIELD
+from locators.forgot_password_page_locator import RESET_PASSWORD_CONFIRM_BUTTON, RESET_PASSWORD_EMAIL_FIELD
 
 
 class ForgotPasswordPage(BasePage):
@@ -16,3 +16,9 @@ class ForgotPasswordPage(BasePage):
 
     def click_reset_password_confirm_button(self):
         self.find_element(RESET_PASSWORD_CONFIRM_BUTTON).click()
+
+    # шаг для прохождения страницы /forgot-password
+    def set_forgot_password_page(self):
+        self.wait_for_load_forgot_password_page()
+        self.set_email_for_reset_password()
+        self.click_reset_password_confirm_button()

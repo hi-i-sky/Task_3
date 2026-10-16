@@ -78,13 +78,8 @@ def created_user(random_user_payload):
 
 @pytest.fixture
 def created_order(main_page, login_page, created_user):
-    main_page.get_base_page()
-    main_page.click_personal_account_button()
         
-    login_page.wait_for_load_login_page()
-    login_page.set_email(created_user['email'])
-    login_page.set_password(created_user['password'])
-    login_page.click_login_button()
+    login_page.login(created_user['email'], created_user['password'])
         
     main_page.wait_for_load_main_page()
     main_page.drag_and_drop_ingredient()

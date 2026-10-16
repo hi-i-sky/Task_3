@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 from selenium.webdriver.support.color import Color
-from locators.base_page_locators import SHOW_PASSWORD_BUTTON, RESET_PASSWORD_FIELD, RESET_PASSWORD_FIELD_BORDER
+from locators.reset_password_page_locators import SHOW_PASSWORD_BUTTON, RESET_PASSWORD_FIELD, RESET_PASSWORD_FIELD_BORDER
 
 
 class ResetPasswordPage(BasePage):

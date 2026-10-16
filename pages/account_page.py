@@ -21,4 +21,4 @@ class AccountPage(BasePage):
         self.wait_for_element_visible(LAST_ORDER_FROM_ORDERS_HISTORY_ID)
 
     def get_last_order_from_orders_history_id(self):
-        self.find_element(LAST_ORDER_FROM_ORDERS_HISTORY_ID).text
+        self.get_locators_text(LAST_ORDER_FROM_ORDERS_HISTORY_ID)

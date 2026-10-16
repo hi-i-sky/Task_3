@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+PERSONAL_ACCOUNT_BUTTON = [By.XPATH, ".//p[text()='Личный Кабинет']"]
 ORDERS_FEED_BUTTON = [By.XPATH, ".//p[text()='Лента Заказов']"]
 ORDERS_FEED_HEADER = [By.XPATH, ".//h1[text()='Лента заказов']"]
 CONSTRUCTOR_BUTTON = [By.XPATH, ".//p[text()='Конструктор']"]
@@ -14,3 +15,4 @@ INGREDIENTS_COUNTER = [By.XPATH, ".//a[contains(@href, '6acef97852135b001b21a32b
 ORDER_ID = [By.CSS_SELECTOR, "h2.Modal_modal__title_shadow__3ikwq"]
 ORDER_IN_PROCESS_HEADER = [By.CSS_SELECTOR, "p.text_type_main-small"]
 CLOSE_CREATED_ORDER_WINDOW_BUTTON = [By.CSS_SELECTOR, "button.Modal_modal__close_modified__3V5XS"]
+MAIN_PAGE_OVERLAY = [By.CLASS_NAME, "Modal_modal_overlay__x2ZCr"]
