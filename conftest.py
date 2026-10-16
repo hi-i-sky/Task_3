@@ -7,6 +7,7 @@ from pages.login_page import LoginPage
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.reset_password_page import ResetPasswordPage
 from pages.account_page import AccountPage
+from pages.orders_feed_page import OrdersFeedPage
 from constants.urls import CREATE_USER_URL
 from helpers import delete_user_by_token
 
@@ -45,7 +46,6 @@ def driver(request):
 
 @pytest.fixture
 def random_user_payload():
-
     fake = Faker()
     return {
         'email': fake.email(),
@@ -56,7 +56,6 @@ def random_user_payload():
 
 @pytest.fixture
 def created_user(random_user_payload):
-
     r = requests.post(CREATE_USER_URL, json=random_user_payload)
     r.raise_for_status()
 
@@ -75,6 +74,24 @@ def created_user(random_user_payload):
     }
 
     delete_user_by_token(user_access_token)
+
+
+@pytest.fixture
+def created_order(main_page, login_page, created_user):
+    main_page.get_base_page()
+    main_page.click_personal_account_button()
+        
+    login_page.wait_for_load_login_page()
+    login_page.set_email(created_user['email'])
+    login_page.set_password(created_user['password'])
+    login_page.click_login_button()
+        
+    main_page.wait_for_load_main_page()
+    main_page.drag_and_drop_ingredient()
+    main_page.click_make_order_button()
+    main_page.wait_for_load_order_id()
+
+    return main_page
 
 
 @pytest.fixture
@@ -100,3 +117,8 @@ def reset_password_page(driver):
 @pytest.fixture
 def account_page(driver):
     return AccountPage(driver)
+
+
+@pytest.fixture
+def orders_feed_page(driver):
+    return OrdersFeedPage(driver)

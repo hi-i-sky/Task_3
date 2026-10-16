@@ -1,6 +1,7 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.color import Color
 
 
 class BasePage:
@@ -88,3 +89,12 @@ class BasePage:
         fire(source, 'dragend');
         """
         self.driver.execute_script(script, source, target)
+
+    def wait_for_css_property_border_color(self, locator, expected_color, prop="border-bottom-color"):
+        expected = Color.from_string(expected_color)
+        self.wait.until(
+            lambda d: Color.from_string(
+                d.find_element(*locator).value_of_css_property(prop)
+            ) == expected,
+            message=f"Цвет {prop} не стал {expected_color}"
+        )

@@ -1,6 +1,5 @@
 from pages.base_page import BasePage
-from locators.account_page_locators import ORDERS_HISTORY, LOGOUT_BUTTON
-from constants.urls import ORDERS_HISTORY_IN_ACCOUNT_URL
+from locators.account_page_locators import ORDERS_HISTORY, LOGOUT_BUTTON, LAST_ORDER_FROM_ORDERS_HISTORY_ID
 
 
 class AccountPage(BasePage):
@@ -19,4 +18,7 @@ class AccountPage(BasePage):
         self.find_element(LOGOUT_BUTTON).click()
 
     def wait_for_load_orders_history_in_account(self):
-        self.wait_for_url_to_be(ORDERS_HISTORY_IN_ACCOUNT_URL)
+        self.wait_for_element_visible(LAST_ORDER_FROM_ORDERS_HISTORY_ID)
+
+    def get_last_order_from_orders_history_id(self):
+        self.find_element(LAST_ORDER_FROM_ORDERS_HISTORY_ID).text

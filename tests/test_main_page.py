@@ -1,5 +1,4 @@
 import allure
-from constants.urls import ACCOUNT_URL, LOGIN_URL, ORDERS_HISTORY_IN_ACCOUNT_URL
 from locators.main_page_locators import ORDERS_FEED_HEADER, CONSTRUCTOR_HEADER, INGREDIENTS_DETAILS, INGREDIENTS_DETAILS_NAME, ORDER_ID, ORDER_IN_PROCESS_HEADER
 
 
@@ -78,6 +77,7 @@ class TestMainPage():
         login_page.click_login_button()
         
         main_page.wait_for_load_main_page()
+        main_page.drag_and_drop_ingredient()
         main_page.click_make_order_button()
         main_page.wait_for_load_order_id()
 

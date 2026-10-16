@@ -2,7 +2,7 @@ from pages.base_page import BasePage
 
 from constants.urls import BASE_URL, ORDERS_FEED_URL
 from locators.base_page_locators import PERSONAL_ACCOUNT_BUTTON
-from locators.main_page_locators import ORDERS_FEED_BUTTON, CONSTRUCTOR_BUTTON, INGREDIENT_BUTTON, INGREDIENTS_DETAILS, CLOSE_INGREDIENTS_DETAILS_BUTTON, MAKE_ORDER_BUTTON, ORDER_AREA, ORDERS_FEED_HEADER, INGREDIENTS_COUNTER, ORDER_ID
+from locators.main_page_locators import ORDERS_FEED_BUTTON, CONSTRUCTOR_BUTTON, INGREDIENT_BUTTON, INGREDIENTS_DETAILS, CLOSE_INGREDIENTS_DETAILS_BUTTON, MAKE_ORDER_BUTTON, ORDER_AREA, ORDERS_FEED_HEADER, INGREDIENTS_COUNTER, ORDER_ID, CLOSE_CREATED_ORDER_WINDOW_BUTTON
 
 
 class MainPage(BasePage):
@@ -17,7 +17,7 @@ class MainPage(BasePage):
         self.open_page(ORDERS_FEED_URL)
 
     def wait_for_load_main_page(self):
-        self.wait_for_url_to_be(BASE_URL)
+        self.wait_for_element_clickable(PERSONAL_ACCOUNT_BUTTON)
 
     def click_personal_account_button(self):
         self.find_element(PERSONAL_ACCOUNT_BUTTON).click()
@@ -54,3 +54,12 @@ class MainPage(BasePage):
 
     def wait_for_load_order_id(self):
         self.wait_for_element_visible(ORDER_ID)
+
+    def close_created_order_window(self):
+        self.find_element(CLOSE_CREATED_ORDER_WINDOW_BUTTON).click()
+
+    def wait_for_created_order_window_close(self):
+        self.wait_for_element_invisible(CLOSE_CREATED_ORDER_WINDOW_BUTTON)
+
+    def get_created_order_id(self):
+        self.find_element(ORDER_ID).text
