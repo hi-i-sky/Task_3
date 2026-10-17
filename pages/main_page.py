@@ -1,5 +1,4 @@
 from pages.base_page import BasePage
-import time
 from constants.urls import BASE_URL, ORDERS_FEED_URL
 from locators.main_page_locators import PERSONAL_ACCOUNT_BUTTON, ORDERS_FEED_BUTTON, CONSTRUCTOR_BUTTON, INGREDIENT_BUTTON, INGREDIENTS_DETAILS, CLOSE_INGREDIENTS_DETAILS_BUTTON, MAKE_ORDER_BUTTON, ORDER_AREA, ORDERS_FEED_HEADER, INGREDIENTS_COUNTER, ORDER_ID, CLOSE_CREATED_ORDER_WINDOW_BUTTON, CONSTRUCTOR_HEADER, INGREDIENTS_DETAILS_NAME, ORDER_IN_PROCESS_HEADER
 
@@ -19,12 +18,6 @@ class MainPage(BasePage):
         self.wait_for_element_clickable(PERSONAL_ACCOUNT_BUTTON)
 
     def click_personal_account_button(self):
-        self.find_element(PERSONAL_ACCOUNT_BUTTON).click()
-
-    # метод для клика по личному кабинету после логина: приходится 
-    # ждать когда оверлей исчезнет и только потом кликаем
-    def click_personal_account_button_after_login(self):
-        time.sleep(1)
         self.find_element(PERSONAL_ACCOUNT_BUTTON).click()
 
     def click_orders_feed_button(self):

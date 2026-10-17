@@ -10,7 +10,7 @@ class TestAccountPage():
         login_page.login(created_user['email'], created_user['password'])
         
         main_page.wait_for_load_main_page()
-        main_page.click_personal_account_button_after_login()
+        main_page.click_personal_account_button()
         
         account_page.wait_for_load_account_page()
         account_page.click_logout_button()
@@ -26,7 +26,7 @@ class TestAccountPage():
         login_page.login(created_user['email'], created_user['password'])
         
         main_page.wait_for_load_main_page()
-        main_page.click_personal_account_button_after_login()
+        main_page.click_personal_account_button()
         
         account_page.wait_for_load_account_page()
         account_page.click_orders_history_button()
