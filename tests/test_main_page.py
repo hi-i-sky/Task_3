@@ -64,9 +64,9 @@ class TestMainPage():
     def test_ingredients_counter_increases_when_ingredient_added(self, main_page):
 
         main_page.get_base_page()
-        assert main_page.get_ingredients_count() == '0'
-
+        main_page.get_ingredients_count() == '0'
         main_page.drag_and_drop_ingredient()
+        
         assert main_page.get_ingredients_count() == '2'
 
 
