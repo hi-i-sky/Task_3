@@ -53,11 +53,8 @@ class TestMainPage():
         main_page.click_on_ingredient()
         main_page.wait_for_load_ingredients_details()
         main_page.click_close_ingredients_details_button()
-        main_page.wait_for_ingredient_details_close()
 
-        ingredients_details_header = main_page.get_element_ingredients_details_header()
-
-        assert not ingredients_details_header.is_displayed()
+        assert main_page.wait_for_ingredient_details_close()
 
 
     @allure.title('Проверка увеличения счетчика ингредиента при переносе ингредиента в заказ')

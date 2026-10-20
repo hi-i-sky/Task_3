@@ -45,7 +45,7 @@ class MainPage(BasePage):
         self.wait_for_element_visible(INGREDIENTS_DETAILS)
 
     def wait_for_ingredient_details_close(self):
-        self.wait_for_element_invisible(INGREDIENTS_DETAILS)
+        return self.wait_for_element_invisible(INGREDIENTS_DETAILS)
 
     def get_ingredients_count(self):
         return self.get_locators_text(INGREDIENTS_COUNTER)
