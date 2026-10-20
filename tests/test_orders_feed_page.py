@@ -1,5 +1,4 @@
 import allure
-from locators.orders_feed_page_locators import ORDER_DATE, ORDER_ID, ORDER_NAME, COMPOSITION_HEADER
 
 
 class TestOrdersFeedPage():
@@ -11,16 +10,11 @@ class TestOrdersFeedPage():
         orders_feed_page.get_orders_feed_page()
         orders_feed_page.click_on_order()
 
-        order_id = orders_feed_page.get_element_order_id()
-        order_name = orders_feed_page.get_element_order_name()
-        order_date = orders_feed_page.get_element_order_date()
-        composition_header = orders_feed_page.get_element_composition_header()
-
-        assert composition_header.is_displayed()
-        assert composition_header.text == 'Cостав'
-        assert order_id.is_displayed()
-        assert order_name.is_displayed()
-        assert order_date.is_displayed()
+        assert orders_feed_page.get_element_composition_header().is_displayed()
+        assert orders_feed_page.get_element_composition_header().text == 'Cостав'
+        assert orders_feed_page.get_element_order_id().is_displayed()
+        assert orders_feed_page.get_element_order_name().is_displayed()
+        assert orders_feed_page.get_element_order_date().is_displayed()
 
 
     @allure.title('Проверка отображения заказа пользоваителя в истории заказов и в ленте заказов')
@@ -36,10 +30,8 @@ class TestOrdersFeedPage():
         account_page.wait_for_load_account_page()
         account_page.click_orders_history_button()
         account_page.wait_for_load_orders_history_in_account()
-        
-        order_history_id = account_page.get_last_order_from_orders_history_id()
 
-        assert order_feed_id == order_history_id
+        assert order_feed_id == account_page.get_last_order_from_orders_history_id()
 
 
     @allure.title('Проверка увеличения счетчика "Выполнено за все время" при создании заказа')
@@ -59,9 +51,7 @@ class TestOrdersFeedPage():
         orders_feed_page.get_orders_feed_page()
         orders_feed_page.wait_for_load_orders_feed_page()
 
-        count_completed_after = orders_feed_page.get_count_completed_all_time()
-
-        assert count_completed_after > count_completed_before
+        assert orders_feed_page.get_count_completed_all_time() > count_completed_before
 
 
     @allure.title('Проверка увеличения счетчика "Выполнено за сегодня" при создании заказа')
@@ -81,9 +71,7 @@ class TestOrdersFeedPage():
         orders_feed_page.get_orders_feed_page()
         orders_feed_page.wait_for_load_orders_feed_page()
 
-        count_completed_after = orders_feed_page.get_count_completed_today()
-
-        assert count_completed_after > count_completed_before
+        assert orders_feed_page.get_count_completed_today() > count_completed_before
 
 
     # по заданию тест должен проверять отображение созданного заказа в разделе "В работе",
@@ -98,6 +86,4 @@ class TestOrdersFeedPage():
         orders_feed_page.get_orders_feed_page()
         orders_feed_page.wait_for_load_orders_feed_page()
 
-        last_ready_order_id = orders_feed_page.get_last_order_is_ready_id()
-
-        assert created_order_id.lstrip('0') == last_ready_order_id.lstrip('0')
+        assert created_order_id.lstrip('0') == orders_feed_page.get_last_order_is_ready_id().lstrip('0')

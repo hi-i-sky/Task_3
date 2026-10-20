@@ -15,7 +15,7 @@ class OrdersFeedPage(BasePage):
         self.find_element(ORDER_BUTTON).click()
 
     def get_last_order_from_orders_feed_id(self):
-        self.get_locators_text(LAST_ORDER_FROM_ORDERS_FEED_ID)
+        return self.get_locators_text(LAST_ORDER_FROM_ORDERS_FEED_ID)
 
     def wait_for_load_orders_feed_page(self):
         return self.wait_for_element_visible(LAST_ORDER_FROM_ORDERS_FEED_ID)

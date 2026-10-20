@@ -10,11 +10,9 @@ class TestMainPage():
         main_page.get_base_page()
         main_page.click_orders_feed_button()
         main_page.wait_for_load_orders_feed()
-
-        orders_feed_header = main_page.get_element_orders_feed_header()
         
-        assert orders_feed_header.is_displayed()
-        assert orders_feed_header.text == 'Лента заказов'
+        assert main_page.get_element_orders_feed_header().is_displayed()
+        assert main_page.get_element_orders_feed_header().text == 'Лента заказов'
 
 
     @allure.title('Проверка кнопки "Конструктор"')
@@ -24,10 +22,8 @@ class TestMainPage():
         main_page.click_constructor_button()
         main_page.wait_for_load_main_page()
 
-        constructor_header = main_page.get_element_constructor_header()
-
-        assert constructor_header.is_displayed()
-        assert constructor_header.text == 'Соберите бургер'
+        assert main_page.get_element_constructor_header().is_displayed()
+        assert main_page.get_element_constructor_header().text == 'Соберите бургер'
 
 
     @allure.title('Проверка окна с деталями об ингредиенте при клике на ингредиент')
@@ -37,13 +33,10 @@ class TestMainPage():
         main_page.click_on_ingredient()
         main_page.wait_for_load_ingredients_details()
 
-        ingredients_details_header = main_page.get_element_ingredients_details_header()
-        ingredient = main_page.get_element_ingredients_details_name()
-
-        assert ingredients_details_header.is_displayed()
-        assert ingredients_details_header.text == 'Детали ингредиента'
-        assert ingredient.is_displayed()
-        assert ingredient.text == 'Краторная булка N-200i'
+        assert main_page.get_element_ingredients_details_header().is_displayed()
+        assert main_page.get_element_ingredients_details_header().text == 'Детали ингредиента'
+        assert main_page.get_element_ingredients_details_name().is_displayed()
+        assert main_page.get_element_ingredients_details_name().text == 'Краторная булка N-200i'
 
 
     @allure.title('Проверка закрытия окна с деталями об ингредиенте по крестику')
@@ -73,8 +66,5 @@ class TestMainPage():
         
         main_page.make_order()
 
-        order_id = main_page.get_element_order_id()
-        order_in_process_header = main_page.get_element_order_in_process_header()
-
-        assert order_id.is_displayed()
-        assert order_in_process_header.text == 'Ваш заказ начали готовить'
+        assert main_page.get_element_order_id().is_displayed()
+        assert main_page.get_element_order_in_process_header().text == 'Ваш заказ начали готовить'
