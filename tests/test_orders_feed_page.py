@@ -40,7 +40,7 @@ class TestOrdersFeedPage():
         orders_feed_page.get_orders_feed_page()
         orders_feed_page.wait_for_load_orders_feed_page()
 
-        count_completed_before = orders_feed_page.get_count_completed_all_time()
+        count_completed_before = int(orders_feed_page.get_count_completed_all_time())
 
         login_page.login(created_user['email'], created_user['password'])
             
@@ -51,7 +51,7 @@ class TestOrdersFeedPage():
         orders_feed_page.get_orders_feed_page()
         orders_feed_page.wait_for_load_orders_feed_page()
 
-        assert orders_feed_page.get_count_completed_all_time() > count_completed_before
+        assert int(orders_feed_page.get_count_completed_all_time()) > count_completed_before
 
 
     @allure.title('Проверка увеличения счетчика "Выполнено за сегодня" при создании заказа')
@@ -60,7 +60,7 @@ class TestOrdersFeedPage():
         orders_feed_page.get_orders_feed_page()
         orders_feed_page.wait_for_load_orders_feed_page()
 
-        count_completed_before = orders_feed_page.get_count_completed_today()
+        count_completed_before = int(orders_feed_page.get_count_completed_today())
 
         login_page.login(created_user['email'], created_user['password'])
             
@@ -71,7 +71,7 @@ class TestOrdersFeedPage():
         orders_feed_page.get_orders_feed_page()
         orders_feed_page.wait_for_load_orders_feed_page()
 
-        assert orders_feed_page.get_count_completed_today() > count_completed_before
+        assert int(orders_feed_page.get_count_completed_today()) > count_completed_before
 
 
     # по заданию тест должен проверять отображение созданного заказа в разделе "В работе",
