@@ -1,0 +1,1 @@
+COLOR_OF_HIGHLIGHTS = 'rgb(76, 76, 255)'
