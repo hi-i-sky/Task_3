@@ -42,7 +42,7 @@ class TestMainPage():
 
         assert ingredients_details_header.is_displayed()
         assert ingredients_details_header.text == 'Детали ингредиента'
-        assert ingredient.is_displayed
+        assert ingredient.is_displayed()
         assert ingredient.text == 'Краторная булка N-200i'
 
 
